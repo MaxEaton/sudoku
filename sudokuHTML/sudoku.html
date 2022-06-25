@@ -1,0 +1,123 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sudoku Backtracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <table>
+    <tr class="thickTop">
+      <td><input id="c00" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c01" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c02" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c03" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c04" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c05" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c06" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c07" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c08" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+    <tr>
+      <td><input id="c10" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c11" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c12" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class= "thickLeft"><input id="c13" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c14" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c15" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class= "thickLeft"><input id="c16" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c17" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c18" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+    <tr>
+      <td><input id="c20" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c21" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c22" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c23" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c24" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c25" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c26" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c27" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c28" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+    <tr class="thickTop">
+      <td><input id="c30" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c31" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c32" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c33" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c34" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c35" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c36" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c37" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c38" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+    <tr>
+      <td><input id="c40" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c41" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c42" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class= "thickLeft"><input id="c43" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c44" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c45" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class= "thickLeft"><input id="c46" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c47" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c48" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+    <tr>
+      <td><input id="c50" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c51" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c52" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c53" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c54" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c55" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c56" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c57" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c58" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+    <tr class="thickTop">
+      <td><input id="c60" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c61" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c62" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c63" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c64" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c65" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c66" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c67" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c68" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+    <tr>
+      <td><input id="c70" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c71" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c72" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class= "thickLeft"><input id="c73" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c74" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c75" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class= "thickLeft"><input id="c76" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c77" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c78" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+    <tr>
+      <td><input id="c80" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c81" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c82" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c83" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c84" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c85" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td class="thickLeft"><input id="c86" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c87" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+      <td><input id="c88" onkeypress="return restrictNum(event)" onpaste="return false"></td>
+    </tr>
+  </table>
+  <div id="userInterface">
+    <input id="strInput" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="81" onpaste="return false" placeholder="Enter 0-9...">
+  </div>
+  <div id="userInterface">
+    <button onclick="pull(event)">Pull</button>
+    <button onclick="push(event)">Push</button>
+    <button onclick="solve(event)">Solve</button>
+    <button onclick="clearAll(event)">Clear</button>
+  </div>
+  <script src="interface.js"></script>
+</body>
+</html>
