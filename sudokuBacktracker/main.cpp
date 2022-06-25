@@ -6,10 +6,14 @@
 int main() {
     auto timeAmount = std::chrono::high_resolution_clock::now();
 
-    std::string str = "060000070010026000004000250900050003400080900080000407806400000040100008090038000";
-    // std::string str = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-    std::array<std::array<char, length>, length> state;
+    std::string str;
+    std::array<std::array<char, sideSquared>, sideSquared> state;
 
+    while (!validInput(str)) {
+        std::cout << "Enter state of board: ";
+        std::cin >> str;
+
+    }
     state = strToMatrix(str);
 
     Board board(state);

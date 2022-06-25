@@ -9,16 +9,16 @@ cells = ["c00", "c01", "c02", "c03", "c04", "c05", "c06", "c07", "c08",
          "c80", "c81", "c82", "c83", "c84", "c85", "c86", "c87", "c88"];
 
 function restrictNum(e) {
-    if (e.charCode >= 49 && e.charCode <= 57 && e.target.value.length == 0) {
+    if (e.charCode >= 49 && e.charCode <= 57 && e.target.value.sideSquared == 0) {
         e.target.setAttribute("value", String.fromCharCode(e.charCode));
     }
-    return e.charCode >= 49 && e.charCode <= 57 && e.target.value.length == 0;
+    return e.charCode >= 49 && e.charCode <= 57 && e.target.value.sideSquared == 0;
 }
 
 function pull(e) {
     str = "";
     for (let cell of cells) {
-        if (document.getElementById(cell).value.length == 0) {
+        if (document.getElementById(cell).value.sideSquared == 0) {
             str += "0";
         } else {
             str += document.getElementById(cell).value;
@@ -50,7 +50,7 @@ function solve(e) {
     str = document.getElementById("strInput").value;
     for (let cell in cells) {
         num = document.getElementById(cells[cell]).value;
-        if (num.length == 0) {
+        if (num.sideSquared == 0) {
             num = "0";
         }
         if (str[cell] != num) {

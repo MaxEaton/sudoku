@@ -7,9 +7,9 @@
 
 #define z findBox(x, y)
 #define side 3
-#define length side*side
+#define sideSquared side*side
 
-Board::Board(std::array<std::array<char, length>, length> state) {
+Board::Board(std::array<std::array<char, sideSquared>, sideSquared> state) {
     initial = state;
     board = state;
     row = {0};
@@ -50,9 +50,9 @@ bool Board::onlySol() {
 }
 
 void Board::printBoard() {
-    for (int x=0; x<length; x++) {
+    for (int x=0; x<sideSquared; x++) {
         std::cout << " ";
-        for (int y=0; y<length; y++) {
+        for (int y=0; y<sideSquared; y++) {
             std::cout << board[x][y] << " ";
         }
         std::cout << "\n";
@@ -65,23 +65,23 @@ int Board::findBox(int x, int y) {
 }
 
 std::pair<int, int> Board::findEmpty(int x, int y) {
-    while (x < length) {
+    while (x < sideSquared) {
         if (board[x][y] == '0') {
             return {x, y};
         }
         y += 1;
-        if (y == length) {
+        if (y == sideSquared) {
             y = 0;
             x += 1;
         }
     }
-    return {length, length};
+    return {sideSquared, sideSquared};
 }
 
 void Board::strip() {
     char num;
-    for (int x=0; x<length; x++) {
-        for (int y=0; y<length; y++) {
+    for (int x=0; x<sideSquared; x++) {
+        for (int y=0; y<sideSquared; y++) {
             num = board[x][y];
             if (num != '0') {
                 row[x].set(num-'1');
@@ -94,17 +94,17 @@ void Board::strip() {
 
 bool Board::backtracker(int x, int y) {
     std::tie(x, y) = findEmpty(x, y);
-    if (x == length) {
+    if (x == sideSquared) {
         if (checkingMore && board == second) {
             return false;
         }
         return true;
     }
-    std::bitset<length> const cell = row[x] | col[y] | box[z];
+    std::bitset<sideSquared> const cell = row[x] | col[y] | box[z];
     if (cell.all()) {
         return false;
     }
-    for (int n=0; n<length; n++) {
+    for (int n=0; n<sideSquared; n++) {
         if (!cell[n]) {
             board[x][y] = '1' + n;
             row[x].set(n);
@@ -122,12 +122,24 @@ bool Board::backtracker(int x, int y) {
     return false;
 }
 
-std::array<std::array<char, length>, length> strToMatrix(std::string str) {
-    std::array<std::array<char, length>, length> matrix;
-    for (int x=0; x<length; x++) {
-        for (int y=0; y<length; y++) {
-            matrix[x][y] = str[x*length+y];
+std::array<std::array<char, sideSquared>, sideSquared> strToMatrix(std::string str) {
+    std::array<std::array<char, sideSquared>, sideSquared> matrix;
+    for (int x=0; x<sideSquared; x++) {
+        for (int y=0; y<sideSquared; y++) {
+            matrix[x][y] = str[x*sideSquared+y];
         }
     }
     return matrix;
+}
+
+bool validInput(std::string str) {
+    if (str.length() < sideSquared) {
+        return false;
+    }
+    for (int i=0; i<sideSquared; i++) {
+        if (!isdigit(str[i])) {
+            return false;
+        }
+    }
+    return true;
 }

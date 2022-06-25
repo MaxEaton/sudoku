@@ -8,18 +8,18 @@
 
 #define z findBox(x, y)
 #define side 3
-#define length side*side
+#define sideSquared side*side
 
 struct Board {
     public:
 
-    std::array<std::array<char, length>, length> initial;
-    std::array<std::array<char, length>, length> board;
-    std::array<std::bitset<length>, length> row;
-    std::array<std::bitset<length>, length> col;
-    std::array<std::bitset<length>, length> box;
+    std::array<std::array<char, sideSquared>, sideSquared> initial;
+    std::array<std::array<char, sideSquared>, sideSquared> board;
+    std::array<std::bitset<sideSquared>, sideSquared> row;
+    std::array<std::bitset<sideSquared>, sideSquared> col;
+    std::array<std::bitset<sideSquared>, sideSquared> box;
 
-    Board(std::array<std::array<char, length>, length> state);
+    Board(std::array<std::array<char, sideSquared>, sideSquared> state);
 
     void solve();
 
@@ -32,7 +32,7 @@ struct Board {
     private:
 
     bool checkingMore = false;
-    std::array<std::array<char, length>, length> second;
+    std::array<std::array<char, sideSquared>, sideSquared> second;
 
     int findBox(int x, int y);
 
@@ -43,6 +43,8 @@ struct Board {
     bool backtracker(int x, int y);
 };
 
-std::array<std::array<char, length>, length> strToMatrix(std::string str);
+std::array<std::array<char, sideSquared>, sideSquared> strToMatrix(std::string str);
+
+bool validInput(std::string str);
 
 #endif
