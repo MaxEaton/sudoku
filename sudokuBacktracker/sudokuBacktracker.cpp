@@ -3,7 +3,7 @@
 #include <bitset>
 #include <tuple>
 
-#include "sudokuBacktracker.h"
+#include "sudokuBacktracker.hpp"
 
 #define z findBox(x, y)
 #define side 3

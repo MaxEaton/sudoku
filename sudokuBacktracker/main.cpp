@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 
-#include "sudokuBacktracker.h"
+#include "sudokuBacktracker.hpp"
 
 int main() {
     auto timeAmount = std::chrono::high_resolution_clock::now();
