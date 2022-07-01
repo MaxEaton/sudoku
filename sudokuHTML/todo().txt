@@ -1,5 +1,0 @@
- - sync with cpp
- - make look nice
-    - make textbox and buttons and table aligned
-    - possibly better vertical align
- - git
