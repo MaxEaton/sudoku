@@ -1,22 +1,28 @@
 #include <iostream>
 #include <chrono>
 
-#include "sudokuBacktracker.hpp"
+#include "sudokuMisc.hpp"
+#include "sudokuBoardClass.hpp"
 
 int main() {
     auto timeAmount = std::chrono::high_resolution_clock::now();
 
-    std::string str;
-    std::array<std::array<char, sideSquared>, sideSquared> state;
+    // std::string str;
+    // std::array<std::array<char, sideSquared>, sideSquared> state;
 
-    while (!validInput(str)) {
-        std::cout << "Enter state of board: ";
-        std::cin >> str;
+    // while (!validInput(str)) {
+    //     std::cout << "Enter state of board: ";
+    //     std::cin >> str;
 
-    }
-    state = strToMatrix(str);
+    // }
+    // state = strToMatrix(str);
 
-    Board board(state);
+    // Board board(state);
+    // board.printBoard();
+    // board.solve();
+    // board.printBoard();
+
+    Board board;
     board.printBoard();
     board.solve();
     board.printBoard();

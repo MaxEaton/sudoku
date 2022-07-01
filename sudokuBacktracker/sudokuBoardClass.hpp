@@ -1,14 +1,13 @@
-#ifndef SUDOKUBACKTRACKER
-#define SUDOKUBACKTRACKER
+#ifndef SUDOKUBOARDCLASS
+#define SUDOKUBOARDCLASS
 
 #include <iostream>
 #include <array>
 #include <bitset>
-#include <tuple>
 
 #define z findBox(x, y)
 #define side 3
-#define sideSquared side*side
+#define sideSquared (side*side)
 
 struct Board {
     public:
@@ -19,7 +18,11 @@ struct Board {
     std::array<std::bitset<sideSquared>, sideSquared> col;
     std::array<std::bitset<sideSquared>, sideSquared> box;
 
+    Board();
+
     Board(std::array<std::array<char, sideSquared>, sideSquared> state);
+
+    void generate();
 
     void solve();
 
@@ -31,8 +34,11 @@ struct Board {
     
     private:
 
-    bool checkingMore = false;
-    std::array<std::array<char, sideSquared>, sideSquared> second;
+    bool onlySolBool = false;
+    bool generateBool = false;
+    std::array<std::array<char, sideSquared>, sideSquared> solution;
+
+    std::array<char, sideSquared> reorderNumber();
 
     int findBox(int x, int y);
 
@@ -40,11 +46,9 @@ struct Board {
 
     void strip();
 
+    void decompose();
+
     bool backtracker(int x, int y);
 };
-
-std::array<std::array<char, sideSquared>, sideSquared> strToMatrix(std::string str);
-
-bool validInput(std::string str);
 
 #endif

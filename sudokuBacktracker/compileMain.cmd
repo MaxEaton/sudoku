@@ -1,1 +1,1 @@
-g++ -o main main.cpp sudokuBacktracker.o
+g++ -o main main.cpp sudokuBacktracker.o sudokuGenerator.o

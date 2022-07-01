@@ -3,11 +3,12 @@
 #include <bitset>
 #include <tuple>
 
-#include "sudokuBacktracker.hpp"
+#include "sudokuMisc.hpp"
+#include "sudokuBoardClass.hpp"
 
 #define z findBox(x, y)
 #define side 3
-#define sideSquared side*side
+#define sideSquared (side*side)
 
 Board::Board(std::array<std::array<char, sideSquared>, sideSquared> state) {
     initial = state;
@@ -31,18 +32,21 @@ void Board::unsolve() {
 }
 
 bool Board::onlySol() {
-    if (board == initial) {
-        solve();
+    if (!generateBool) {
         if (board == initial) {
-            
-            return false;
+            solve();
+            if (board == initial) {
+                return false;
+            }
         }
-    }
-    checkingMore = true;
-    second = board;
+        solution = board;
+    } 
+    generateBool = false;
+    onlySolBool = true;
     unsolve();
     solve();
-    checkingMore = false;
+    onlySolBool = false;
+    generateBool = true;
     if (board == initial) {
         return true;
     }
@@ -79,14 +83,14 @@ std::pair<int, int> Board::findEmpty(int x, int y) {
 }
 
 void Board::strip() {
-    char num;
+    char numChar;
     for (int x=0; x<sideSquared; x++) {
         for (int y=0; y<sideSquared; y++) {
-            num = board[x][y];
-            if (num != '0') {
-                row[x].set(num-'1');
-                col[y].set(num-'1');
-                box[z].set(num-'1');
+            numChar = board[x][y];
+            if (numChar != '0') {
+                row[x].set(numChar-'1');
+                col[y].set(numChar-'1');
+                box[z].set(numChar-'1');
             }
         }
     }
@@ -95,7 +99,7 @@ void Board::strip() {
 bool Board::backtracker(int x, int y) {
     std::tie(x, y) = findEmpty(x, y);
     if (x == sideSquared) {
-        if (checkingMore && board == second) {
+        if (onlySolBool && board == solution) {
             return false;
         }
         return true;
@@ -104,18 +108,24 @@ bool Board::backtracker(int x, int y) {
     if (cell.all()) {
         return false;
     }
+    std::array<char, sideSquared> order;
+    if (generateBool) {
+        order = reorderNumber();
+    } else {
+        order = {{'1', '2', '3', '4', '5', '6', '7', '8', '9'}};
+    }
     for (int n=0; n<sideSquared; n++) {
-        if (!cell[n]) {
-            board[x][y] = '1' + n;
-            row[x].set(n);
-            col[y].set(n);
-            box[z].set(n);
+        if (!cell[order[n]-'1']) {
+            board[x][y] = order[n];
+            row[x].set(order[n]-'1');
+            col[y].set(order[n]-'1');
+            box[z].set(order[n]-'1');
             if (backtracker(x, y)) {
                 return true;
             }
-            row[x].reset(n);
-            col[y].reset(n);
-            box[z].reset(n);
+            row[x].reset(order[n]-'1');
+            col[y].reset(order[n]-'1');
+            box[z].reset(order[n]-'1');
         }
     }
     board[x][y] = '0';
