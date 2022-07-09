@@ -7,9 +7,9 @@
 /sudokuBacktracker/.vscode
 
 /sudokuGenerator/todo().txt
-/sudokuGenerator/modulos
-/sudokuGenerator/shifts
-/sudokuGenerator/transMatrices
+/sudokuGenerator/modulos/
+/sudokuGenerator/shifts/
+/sudokuGenerator/transMatrices/
 /sudokuGenerator/stuff.txt
 /sudokuGenerator/stuff2.txt
 /sudokuGenerator/.vscode
