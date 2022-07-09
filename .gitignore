@@ -1,7 +1,15 @@
 /sudokuBacktracker/todo().txt
+/sudokuBacktracker/stuff.txt
+/sudokuBacktracker/stuff2.txt
 /sudokuBacktracker/sudokuBacktracker.o
 /sudokuBacktracker/sudokuGenerator.o
 /sudokuBacktracker/main.exe
 /sudokuBacktracker/.vscode
 
-/sudokuHTML/todo().txt
+/sudokuGenerator/todo().txt
+/sudokuGenerator/modulos
+/sudokuGenerator/shifts
+/sudokuGenerator/transMatrices
+/sudokuGenerator/stuff.txt
+/sudokuGenerator/stuff2.txt
+/sudokuGenerator/.vscode

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <array>
 #include <bitset>
-#include <tuple>
 
 #include "sudokuMisc.hpp"
 #include "sudokuBoardClass.hpp"
@@ -68,10 +67,10 @@ int Board::findBox(int x, int y) {
     return (x / side) * side + y / side;
 }
 
-std::pair<int, int> Board::findEmpty(int x, int y) {
+void Board::findEmpty(int &x, int &y) {
     while (x < sideSquared) {
         if (board[x][y] == '0') {
-            return {x, y};
+            return;
         }
         y += 1;
         if (y == sideSquared) {
@@ -79,7 +78,9 @@ std::pair<int, int> Board::findEmpty(int x, int y) {
             x += 1;
         }
     }
-    return {sideSquared, sideSquared};
+    x = sideSquared;
+    y = sideSquared;
+    return;
 }
 
 void Board::strip() {
@@ -97,7 +98,7 @@ void Board::strip() {
 }
 
 bool Board::backtracker(int x, int y) {
-    std::tie(x, y) = findEmpty(x, y);
+    findEmpty(x, y);
     if (x == sideSquared) {
         if (onlySolBool && board == solution) {
             return false;
@@ -141,6 +142,17 @@ std::array<std::array<char, sideSquared>, sideSquared> strToMatrix(std::string s
     }
     return matrix;
 }
+
+std::string matrixToStr(std::array<std::array<char, sideSquared>, sideSquared> matrix) {
+    std::string str = "";
+    for (int x=0; x<sideSquared; x++) {
+        for (int y=0; y<sideSquared; y++) {
+            str += matrix[x][y];
+        }
+    }
+    return str;
+}
+
 
 bool validInput(std::string str) {
     if (str.length() < sideSquared) {

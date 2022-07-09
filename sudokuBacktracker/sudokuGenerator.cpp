@@ -45,7 +45,6 @@ void Board::generate() {
         {'0', '0', '0', '0', '0', '0', '0', '0', '0'}
     }};
     generateBool = true;
-    srand(time(0));
     backtracker(0, 0);
     solution = board;
     decompose();

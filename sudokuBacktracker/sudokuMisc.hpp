@@ -11,6 +11,8 @@
 
 std::array<std::array<char, sideSquared>, sideSquared> strToMatrix(std::string str);
 
+std::string matrixToStr(std::array<std::array<char, sideSquared>, sideSquared> matrix);
+
 bool validInput(std::string str);
 
 int randSideSquared();

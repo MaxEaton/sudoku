@@ -1,0 +1,3 @@
+- allow signed params?
+- keep on heap so that trainingNumber can be 10000
+- replace modulos with 9? 

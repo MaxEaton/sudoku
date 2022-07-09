@@ -42,7 +42,7 @@ struct Board {
 
     int findBox(int x, int y);
 
-    std::pair<int, int> findEmpty(int x, int y);
+    void findEmpty(int &x, int &y);
 
     void strip();
 
